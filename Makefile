@@ -9,7 +9,9 @@ CARGO = cargo +$(RUST_TOOLCHAIN)
 ALPHA_APP = alpha_app
 BETA_APP = beta_app
 
-.PHONY: build test run clean release build-alpha_app build-beta_app
+MEMBERS = ${ALPHA_APP} ${BETA_APP}
+
+.PHONY: build test run clean release 
 
 # Build all projects
 build: 
@@ -38,3 +40,12 @@ build-alpha-app:
 # Build beta_app specifically
 build-beta-app:
 	$(CARGO) build -p $(BETA_APP)
+
+# Run with multiple calls for each member (bin package)
+run-all: 
+	${MAKE} run PROJECT=${ALPHA_APP}
+	${MAKE} run PROJECT=${BETA_APP}
+
+# Define a rule to call the run target for each member
+run-loop:
+	$(foreach val,$(MEMBERS),$(MAKE) run PROJECT="$(val)";)
