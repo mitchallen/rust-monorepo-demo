@@ -1,0 +1,7 @@
+[workspace]
+
+members = [
+    "alpha_app",
+    "beta_app",
+    "tools_lib"
+]
