@@ -3,7 +3,7 @@ rust-monorepo-demo
 
 ## Related article
 
-* TODO (Work in Progress)
+* [Rust Monorepo Setup (Cargo Workspaces, Mac)](https://scriptable.com/rust/rust-monorepo-cargo-workspaces-setup)
 
 ## Usage
 
