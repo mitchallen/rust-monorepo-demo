@@ -11,10 +11,19 @@ BETA_APP = beta_app
 
 MEMBERS = ${ALPHA_APP} ${BETA_APP}
 
-.PHONY: build test run clean release 
+.PHONY: check-stable-toolchain build test run clean release 
+
+check-stable-toolchain:
+	@if ! rustup toolchain list | grep -q stable; then \
+		echo "Stable toolchain not found. Installing..."; \
+		rustup toolchain install stable; \
+	else \
+		echo "Stable toolchain already installed."; \
+	fi
+
 
 # Build all projects
-build: 
+build: check-stable-toolchain
 	$(CARGO) build
 
 # Test all projects
